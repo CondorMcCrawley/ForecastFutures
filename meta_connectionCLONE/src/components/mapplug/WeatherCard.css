@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .weather-section {
+    background-image: url('./../../assets/gradient.jpg');
+    background-size: cover;
+    transition: 0.4 ease;
+    border-radius: 16px;
+  }
+  
+  .weather-section.warm {
+    background-image: url('./../../assets/warm-bg.jpg');
+  }
+  
+  main {
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.75));
+    padding: 25px;
+  }
+  
+  .weather-box .temp {
+    position: relative;
+    display: inline-block;
+    margin: 10px auto;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+  
+    padding: 15px 25px;
+  
+    color: #FFF;
+    font-size: 24px;
+    font-weight: 700;
+  
+    text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+    text-align: center;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .weather-box .temp2 {
+    position: relative;
+    display: flex;
+    margin: 10px auto;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+  
+    padding: 10px 15px;
+    
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 500;
+  
+    text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+    text-align: center;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .weather-box .weather {
+    color: #FFF;
+    font-size: 48px;
+    font-weight: 700;
+    text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+  }
+
+  .backup {
+    position: relative;
+    margin: 10px;
+    margin-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #92535327;
+    border-radius: 16px;
+  
+    padding: 15px 25px;
+    width: 160px;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 500;
+  
+    text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+    text-align: center;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .weatherPick {
+
+    background-color: hsla(212, 66%, 48%, 0.153);
+    border-radius: 16px;
+
+  
+  }

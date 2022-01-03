@@ -1,0 +1,49 @@
+.open-contract-box .contract {
+    position: relative;
+    display: inline-block;
+    margin: 10px auto;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+  
+    padding: 10px 10px;
+  
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 700;
+  
+    text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+    text-align: center;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .open-contract-box .odds {
+    position: relative;
+    display: inline-block;
+    margin: 10px auto;
+    background-color: red;
+    border-radius: 16px;
+  
+    padding: 10px 10px;
+  
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .open-contract-box .join {
+    position: relative;
+    display: inline-block;
+    margin: 10px auto;
+    background-color: green;
+    border-radius: 16px;
+  
+    padding: 10px 10px;
+  
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+  }

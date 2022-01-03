@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .section {
+    border-radius: 16px;
+    padding: 10px;
+  }
+
+  .bg {
+    background-image: url('./../../assets/black.jpg');
+    border-radius: 16px;
+    padding: 10px;
+  }
+  
+  .marker-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color:#1f0e41
+  }
+  
+  .body2 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .section2 {
+    background-image: url('./../../assets/black.jpg');
+    border-radius: 16px;
+    padding: 10px;
+    
+
+  }
+  
+
