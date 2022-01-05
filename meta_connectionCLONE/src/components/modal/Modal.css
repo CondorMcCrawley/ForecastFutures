@@ -10,11 +10,12 @@
 }
 
 .modalContainer {
-  width: 500px;
-  height: 270px;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 180px;
   border-radius: 12px;
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.35) 5px 5px 5px;
   display: flex;
   flex-direction: column;
 }
@@ -38,11 +39,6 @@
   cursor: pointer;
 }
 
-.modalContainer .body {
-  padding-left:30px;
-  font-size: 24px;
-  text-align: left;
-}
 
 .modalContainer .footer {
   flex: 20%;
@@ -56,8 +52,6 @@
   height: 45px;
   margin: 10px;
   border: none;
-  background-color: cornflowerblue;
-  color: white;
   border-radius: 8px;
   font-size: 20px;
   cursor: pointer;
@@ -65,4 +59,5 @@
 
 #cancelBtn {
   background-color: crimson;
+  color: white;
 }

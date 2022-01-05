@@ -15,7 +15,7 @@ const OpenContracts = () => {
         const getUsers = async () => {
         const data = await getDocs(usersCollectionRef);
         setUsers(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
-        console.log(data)
+        //console.log(data)
 
         }
 
@@ -26,7 +26,7 @@ const OpenContracts = () => {
     const [openModal, setOpenModal] = useState(false);
 
     return (
-        <div>
+        <div style={{paddingTop:'50px'}}>
             <h3 style={{fontSize: 34, color:'white', paddingTop:40, fontWeight:'bold', textAlign:'left'}}> Open Contracts </h3>
             <div style={{color:'white', textAlign:'left'}}>Browse open weather contracts below. </div>
             {users.map((user, id) => {
@@ -41,7 +41,7 @@ const OpenContracts = () => {
                                 Clear: {user.clear}% Rain: {user.rain}% Snow: {user.snow}%
                             </div>
                             <div >
-                                <button className="btn btn-primary btn-md" style={{paddingLeft:'10px', display:'inline-block'}} onClick={() => setOpenModal(true)}>Enter Contract</button>
+                                <button className="btn btn-primary btn-md" style={{marginLeft:'20px', paddingLeft:'10px', display:'inline-block'}} onClick={() => setOpenModal(true)}>Enter Contract</button>
                                 {openModal && <Modal closeModal={setOpenModal} city={user.city} condit={user.condition} amount={user.amount} clear={user.clear} rain={user.rain} snow={user.snow} walletAddress='COMING'/>}
                             </div>
                         </div>

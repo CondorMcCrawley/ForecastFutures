@@ -84,7 +84,7 @@ const TransferFunds = () => {
     window.ethereum.on('chainChanged', chainChangedHandler);
 
 	return (
-        <div>
+        <div style={{paddingTop:'50px'}}>
             {errorMessage}
             <div className='gpt3__header-content'>
                 <div className="gpt3__header-content">

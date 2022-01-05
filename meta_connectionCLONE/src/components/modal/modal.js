@@ -14,7 +14,7 @@ function Modal({ closeModal, city, condit, amount, clear, rain, snow, walletAddr
         odds = clear
     } else if (condit==='SNOW') {
         oppositeType='CLEAR SKIES'
-        odds = snow
+        odds = 100-snow
     } else if (condit==='CLEAR SKIES') {
         oppositeType='RAIN'
         odds = rain 
@@ -45,11 +45,7 @@ function Modal({ closeModal, city, condit, amount, clear, rain, snow, walletAddr
             
             <div className='modalContainer'>
                 
-                <div className='title'>
-                    <h1>Contract Details</h1>
-                </div>
-                    
-                <div className='body'>
+                <div style={{padingLeft:'30px', fontSize:'24px', textAlign:'left', color:'black'}}>
                     <Row>
                         {city} | {oppositeType} | date 
                     </Row>
@@ -64,7 +60,7 @@ function Modal({ closeModal, city, condit, amount, clear, rain, snow, walletAddr
                 </div>
                     
                 <div className='footer'>
-                    <button onClick={() => closeModal(false)}>Continue</button>
+                    <button className="btn btn-primary btn-md" onClick={() => closeModal(false)}>Continue</button>
                     <button onClick={() => closeModal(false)} id="cancelBtn">Cancel</button>
 
                 </div>

@@ -24,7 +24,7 @@ function App() {
             <OpenContracts/>
           </Row>
 
-          <Row>
+          <Row style={{paddingTop:'50px'}}>
             <TransferFunds/>
           </Row>
 

@@ -157,8 +157,7 @@ export default function MapPlug() {
     //submit
     
     const submitContract = async (city, amount, m, d, y, condition, clear, rain, snow) => {
-        
-        setSubmitStatus('Submit')
+    
         const usersCollectionRef = collection(db, "contract");
         await addDoc(usersCollectionRef, 
             {city: city,
@@ -360,6 +359,21 @@ export default function MapPlug() {
                                                     }}>*</button>
                                         </Marker>
             
+                                        <Marker latitude={41.8781} longitude={-87.6298}>
+                                            <button class='marker-btn' onClick={e => {
+                                                        e.preventDefault();
+                                                        setSelectedCity('Chicago')
+                                                        setApiCity('chicago Illinois')
+                                                        setViewport({  
+                                                            width:'500px',
+                                                            height: '450px',     
+                                                            latitude: 41.8781,
+                                                            longitude: -87.6298,
+                                                            zoom: 5, 
+                                                            pitch:0, })
+                                                    }}>*</button>
+                                        </Marker>
+            
                                         <Marker latitude={viewport.latitude} longitude={viewport.longitude} offsetLeft={-20} offsetTop={-10}>
                                                 
                                         </Marker>
@@ -471,10 +485,6 @@ export default function MapPlug() {
                                         <Col>
                                             <Row>
                                                 <button className="btn btn-warning btn-lg m-5" onClick={()=>{submitContract(selectedCity, showPopup, month, contractDate, year, viewport2.type, weatherOdds1.chanceClear, weatherOdds1.chanceRain, weatherOdds1.chanceSnow)}}>Submit Contract</button>
-                                            </Row>
-
-                                            <Row style={{paddingLeft:'20px'}}>
-                                                {submitStatus},{selectedCity}, {showPopup} ETH, {month}/{date}/{year}, {viewport2.type} {weatherOdds1.chanceClear}, {weatherOdds1.chanceRain}, {weatherOdds1.chanceSnow}
                                             </Row>
                                         </Col>
                                     </Row>
