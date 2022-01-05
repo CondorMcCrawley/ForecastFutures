@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import './MapPlug.css';
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
-import { ConstructorFragment } from 'ethers/lib/utils';
-//import * as geoData from "./features.json"
+import './MapPlug.css';
 import './WeatherCard.css'
-import { Row, Col, Container, Form} from "react-bootstrap";
+import { Row, Col, Form} from "react-bootstrap";
 import { View } from 'react-native';  
 import sunImg from './../../assets/sunny.png'
 import rainImg from './../../assets/rainy.png'
 import snowImg from './../../assets/snow.png'
 import weatherImg from './../../assets/weathericon.png'
-import { clear } from '@testing-library/user-event/dist/clear';
+import { db } from './../../firebase-config'
+import { collection, addDoc} from "firebase/firestore";
 
 export default function MapPlug() {
 
@@ -81,7 +80,6 @@ export default function MapPlug() {
         return (
             <div>
             </div>
-    
         )
     }
 
@@ -104,15 +102,13 @@ export default function MapPlug() {
                     </div>
                 </div>
             </div>
-    
         )
     }
-
+    
     const WeatherOddsSubmit = ({choice, clear, rain, snow, amount}) => {
 
         let odds = 0
         let forecast = 0
-        
 
         if (choice==='CLEAR SKIES') {
             odds = 100-clear
@@ -130,7 +126,7 @@ export default function MapPlug() {
         if (odds===100) {
             winAmt = 0
         }
-        if (odds===100) {
+        if (odds===0) {
             winAmt = 0 
         }
 
@@ -155,32 +151,26 @@ export default function MapPlug() {
                     </div>
                 </div>
             </div>
-    
         )
     }
 
     //submit
     
-
-    const submitContract = () => {
+    const submitContract = async (city, amount, m, d, y, condition, clear, rain, snow) => {
         
         setSubmitStatus('Submit')
-        
-        const ccc = {
-            city: 'la',
-            clear: '96',
-            date: 'today',
-            rain: '0',
-            snow: '1', 
-            type: '69',
-            type2: '70'
-        }
-        
-        return (
-            <div>
-                empty
-            </div>
-        )
+        const usersCollectionRef = collection(db, "contract");
+        await addDoc(usersCollectionRef, 
+            {city: city,
+            clear: clear,
+            month: m,
+            day: d,
+            year: y,
+            rain: rain,
+            snow: snow, 
+            amount: amount,
+            condition: condition
+        });
     }
 
     const [submitStatus, setSubmitStatus] = useState(null);
@@ -446,62 +436,52 @@ export default function MapPlug() {
                 <Col>
                     <div style={{marginTop:30}}>
                         <View style={{width: '100%'}}>
-                    <div className='section2' style={{marginTop: '20px'}}>
-                        <h3 style={{fontSize: 34, color:'white', paddingTop:20, fontWeight:'bold', textAlign:'left'}}> Submit Contract </h3>
-                    
-                        <div>
-                            <Row>
-                                <Col>
+                            <div className='section2' style={{marginTop: '20px'}}>
+                                <h3 style={{fontSize: 34, color:'white', paddingTop:20, fontWeight:'bold', textAlign:'left'}}> Submit Contract </h3>
+                                <div>
                                     <Row>
-                                        <h3 style={{fontSize: 24, color:'white', paddingTop:20, paddingLeft:20, fontWeight:'bold', textAlign:'left'}}>Location: {selectedCity}</h3>
+                                        <Col>
+                                            <Row>
+                                                <h3 style={{fontSize: 24, color:'white', paddingTop:20, paddingLeft:20, fontWeight:'bold', textAlign:'left'}}>Location: {selectedCity}</h3>
+                                            </Row>
+                                            <Row>
+                                                <h3 style={{fontSize: 24, color:'white', paddingTop:20, paddingLeft:20, fontWeight:'bold', textAlign:'left'}}>Type: {viewport2.type}</h3>
+                                            </Row>
+
+                                            <Row>
+                                                <h3 style={{fontSize: 24, color:'white', paddingTop:20, paddingLeft:20, fontWeight:'bold', textAlign:'left'}}>Amount: {showPopup} </h3>
+                                                
+                                            </Row>
+
+                                            <Row>
+                                                <h3 style={{fontSize: 24, color:'white', paddingTop:20, paddingLeft:20, fontWeight:'bold', textAlign:'left', paddingRight: '190px'}}>Date: {month}/{date}/{year}</h3>
+                                            </Row>
+                                        </Col>
+
+                                        <Col>
+                                            <Row>
+                                                <WeatherOddsSubmit choice={viewport2.type} clear={weatherOdds1.chanceClear} rain={weatherOdds1.chanceRain} snow={weatherOdds1.chanceSnow} amount={showPopup}/>
+                                            </Row>
+
+                                            <Row>
+                                                <h3 style={{fontSize: 24, color:'white', paddingTop:20, paddingLeft:20, fontWeight:'bold', textAlign:'left'}}>Contract Date: {month}/{contractDate}/{year}</h3>
+                                            </Row>
+                                        </Col>
+
+                                        <Col>
+                                            <Row>
+                                                <button className="btn btn-warning btn-lg m-5" onClick={()=>{submitContract(selectedCity, showPopup, month, contractDate, year, viewport2.type, weatherOdds1.chanceClear, weatherOdds1.chanceRain, weatherOdds1.chanceSnow)}}>Submit Contract</button>
+                                            </Row>
+
+                                            <Row style={{paddingLeft:'20px'}}>
+                                                {submitStatus},{selectedCity}, {showPopup} ETH, {month}/{date}/{year}, {viewport2.type} {weatherOdds1.chanceClear}, {weatherOdds1.chanceRain}, {weatherOdds1.chanceSnow}
+                                            </Row>
+                                        </Col>
                                     </Row>
-                                    <Row>
-                                        <h3 style={{fontSize: 24, color:'white', paddingTop:20, paddingLeft:20, fontWeight:'bold', textAlign:'left'}}>Type: {viewport2.type}</h3>
-                                    </Row>
-
-                                    <Row>
-                                        <h3 style={{fontSize: 24, color:'white', paddingTop:20, paddingLeft:20, fontWeight:'bold', textAlign:'left'}}>Amount: {showPopup} </h3>
-                                        
-                                    </Row>
-
-                                    <Row>
-                                        <h3 style={{fontSize: 24, color:'white', paddingTop:20, paddingLeft:20, fontWeight:'bold', textAlign:'left', paddingRight: '190px'}}>Date: {month}/{date}/{year}</h3>
-                                    </Row>
-                                </Col>
-
-                                <Col>
-                                    <Row>
-                                        <WeatherOddsSubmit choice={viewport2.type} clear={weatherOdds1.chanceClear} rain={weatherOdds1.chanceRain} snow={weatherOdds1.chanceSnow} amount={showPopup}/>
-                                    </Row>
-
-                                    <Row>
-                                        <h3 style={{fontSize: 24, color:'white', paddingTop:20, paddingLeft:20, fontWeight:'bold', textAlign:'left'}}>Contract Date: {month}/{contractDate}/{year}</h3>
-                                    </Row>
-
-                                    <Row>
-                                        <h3 style={{fontSize: 24, color:'white', paddingTop:20, paddingLeft:20, fontWeight:'bold', textAlign:'left'}}>@ 1:00PM</h3>
-                                    </Row>
-
-                                </Col>
-                                <Col>
-                                    <Row>
-                                        <button className="btn btn-warning btn-lg m-5" onClick={event=>{submitContract()}}>Submit Contract</button>
-                                    </Row>
-
-                                    <Row style={{paddingLeft:'20px'}}>
-                                        {submitStatus},{selectedCity}, {showPopup} ETH, {month}/{date}/{year}, {viewport2.type} {weatherOdds1.chanceClear}, {weatherOdds1.chanceRain}, {weatherOdds1.chanceSnow}
-                                    </Row>
-         
-                                </Col>
-                            </Row>
-
-                        </div>
-                    
-                    </div> 
-                </View>
-
-
-            </div>
+                                </div>
+                            </div> 
+                        </View>
+                    </div>
                 </Col>
             </Row>
         </div>

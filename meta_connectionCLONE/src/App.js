@@ -1,7 +1,6 @@
 import './App.css';
 import WalletCard from './components/walletcard/WalletCard.js';
-import Counter from './components/counter/counter.jsx';
-import { Row, Col, Container} from "react-bootstrap";
+import { Row, Container} from "react-bootstrap";
 import MapPlug from './components/mapplug/mapplug.js';
 import TransferFunds from './components/transferfunds/transferfunds.js'
 import OpenContracts from './components/opencontracts/opencontracts.js'
@@ -30,11 +29,6 @@ function App() {
           </Row>
 
         </Container>
-
-        <Row>
-            <Counter/>  
-        </Row>
-    
 
       </div>
     </div>

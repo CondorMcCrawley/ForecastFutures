@@ -3,12 +3,11 @@ import {ethers} from 'ethers'
 import './TransferFunds.css'
 
 const TransferFunds = () => {
-
-    const [startDate, setStartDate] = useState(null);
-	const [errorMessage, setErrorMessage] = useState(null);
-	const [defaultAccount, setDefaultAccount] = useState(null);
-	const [userBalance, setUserBalance] = useState(null);
-	const [connButtonText, setConnButtonText] = useState('Connect Wallet');
+    
+	const [errorMessage] = useState(null);
+	const [setDefaultAccount] = useState(null);
+	const [setUserBalance] = useState(null);
+	const [setConnButtonText] = useState('Connect Wallet');
     const [textDescription, setTextDescription] = useState('Connect your crypto wallet using Chrome\'s built in MetaMask extension.')
     const [contractAddress, setContractAddress] = useState(null);
     const [contractAmount, setContractAmount] = useState(null);
